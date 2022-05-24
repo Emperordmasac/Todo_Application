@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TODO</title>
+    <script type="text/javascript" src="../static/js/script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lacquer&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/main.css">
+</head>
+<body>
+    <h1>TODO APPLICATION PRACTISE</h1>
+    <div class="container">
+
+        <!-- Begin TODOLIST PAGE content -->  
+            <div class="lists__container">
+                <h2>Lists of Tasks</h2>
+                <form method="POST" action="/lists/create" id="list__form">
+                    <label for="list__input">Create A Todo List:</label>
+                    <input type="text" id="list__input" name="list__input" data-id="{{ current__list.id }}" placeholder="Create a Todo List">
+                    <button type="submit">Create List</button>
+                </form>
+                <ul id="lists">
+                    {% for list in lists %}
+                        <li>
+                            <input type="checkbox" data-id="{{ list.id }}" class="list__check">
+                            <a href="/lists/{{ list.id }}">
+                                {{ list.name }}
+                            </a>
+                            <button class="delete__list" data-id="{{ list.id }}">&cross;</button>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        <!-- Begin TODOS Pahe content -->
+            <div class="todos__container">
+                <h2>List of Todos</h2>
+                <form action="/todos/create" method="POST" id="todo__form" >
+                    <input type="hidden" id="list_id" value="{{ current__list.id }}">
+                    <label for="description">Create Your Todos:</label>
+                    <input type="text" name="description" id="description" placeholder="Todos description">
+                    <button type="submit">Create Todos</button>
+                </form>
+                <h4>{{ current__list.name }}</h4>
+                <ul id="todos">
+                    {% for todo in todos %}
+                        <li>
+                            <input type="checkbox" data-id="{{ todo.id }}" name="complete" id="complete" class="todo__check" {% if todo.completed %} checked {% endif %} >
+                            {{ todo.description }}
+                            <button class="delete__todo" data-id="{{ todo.id }}">&cross;</button>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+    </div>
+
+
+</body>
+</html>

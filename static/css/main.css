@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    gap: 100px;
+}
+
+.lists__container, .todos__container {
+    padding: 20px;
+    background-color: grey;
+    width: 300px;
+}
+li {
+    list-style: none;
+}
+h1, h2, h3, h4, body{
+    font-family: 'Lacquer', cursive;
+}
+button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+}
